@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/limitless-loom/static/css/main.e6c13ad2.css",
+    "main.js": "/limitless-loom/static/js/main.be8bf885.js",
+    "static/js/787.cda612ba.chunk.js": "/limitless-loom/static/js/787.cda612ba.chunk.js",
+    "index.html": "/limitless-loom/index.html",
+    "main.e6c13ad2.css.map": "/limitless-loom/static/css/main.e6c13ad2.css.map",
+    "main.be8bf885.js.map": "/limitless-loom/static/js/main.be8bf885.js.map",
+    "787.cda612ba.chunk.js.map": "/limitless-loom/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.be8bf885.js"
+  ]
+}
