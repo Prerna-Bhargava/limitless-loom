@@ -26,7 +26,7 @@ function HomeProducts() {
   const [products, setProducts] = useState([{
     _id: "1",
     name: "Sample Product 1",
-    price: 19.99,
+    price: 20,
     description: "This is a sample product description.",
     category: "ab",
     img:"https://m.media-amazon.com/images/I/814rhxHg5wL._AC_SY400_.jpg"
@@ -35,19 +35,60 @@ function HomeProducts() {
   {
     _id: "2",
     name: "Sample Product 2",
-    price: 29.99,
+    price: 199,
+    description: "Another sample product description.",
+    category: "ab",
+    img:"https://m.media-amazon.com/images/I/81jZ+sACKcL._AC_SY400_.jpg"
+
+    // Add more properties as needed
+  },
+  {
+    _id: "3",
+    name: "Sample Product 3",
+    price: 290.99,
     description: "Another sample product description.",
     category: "ab",
     img:"https://m.media-amazon.com/images/I/81jZ+sACKcL._AC_SY400_.jpg"
 
     // Add more properties as needed
   }]);
+
+  const [filteredProduct,setfilterProduct] = useState([{
+    _id: "1",
+    name: "Sample Product 1",
+    price: 20,
+    description: "This is a sample product description.",
+    category: "ab",
+    img:"https://m.media-amazon.com/images/I/814rhxHg5wL._AC_SY400_.jpg"
+    // Add more properties as needed
+  },
+  {
+    _id: "2",
+    name: "Sample Product 2",
+    price: 199,
+    description: "Another sample product description.",
+    category: "ab",
+    img:"https://m.media-amazon.com/images/I/81jZ+sACKcL._AC_SY400_.jpg"
+
+    // Add more properties as needed
+  },
+  {
+    _id: "3",
+    name: "Sample Product 3",
+    price: 290.99,
+    description: "Another sample product description.",
+    category: "ab",
+    img:"https://m.media-amazon.com/images/I/81jZ+sACKcL._AC_SY400_.jpg"
+
+    // Add more properties as needed
+  }])
+
   const [categories, setCategories] = useState([{ _id: "1",
   name: "Shoes"},{ _id: "2",
   name: "Toys"}]);
   const [Prices, setPrices] = useState([
-    { name: 'less than 200', array: [10, 20, 30] },
-    { name: '200-500', array: [40, 50, 60] },
+    { name: 'less than 200', min:0,max:200,array: [0, 200, 30] },
+    { name: '200-500', min:200, max:500, array: [200, 500, 60] },
   ]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
@@ -184,7 +225,20 @@ function HomeProducts() {
               {/* price filter */}
               <Text fontSize="1xl">Filter By Price</Text>
               <Divider />
-              <RadioGroup onChange={(e) => setRadio(e.split(","))}>
+              <RadioGroup onChange={(e) => {
+                console.log(e.split(",").map(Number)[0])
+                // setProducts(products.filter((c) => c.price >= e.split(",").map(Number)[0]  ))
+                // setProducts(products.filter((c) => {
+                //   const priceRange = e.split(",").map(Number); // Convert string values to numbers
+                //   return c.price >= priceRange[0] && c.price <= priceRange[1];
+                //  }));
+                const priceRange = e.split(",").map(Number);
+
+                setfilterProduct(products.filter((c) => c.price >= priceRange[0] && c.price <= priceRange[1]));
+              
+
+
+              }}>
                 <Stack direction="column">
                   {Prices?.map((p) => (
                 <Radio value={p.array.toString()}>{p.name}</Radio>
@@ -204,7 +258,7 @@ function HomeProducts() {
           <Box flex={3}>
             <Stack direction="column">
               <Box className="home_products">
-                {products?.map((p) => (
+                {filteredProduct?.map((p) => (
                   <ProductCard p={p} setCart={setCart} cart={cart}></ProductCard>
                 ))}
               </Box>
